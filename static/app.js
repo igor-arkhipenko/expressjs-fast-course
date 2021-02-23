@@ -24,6 +24,10 @@ const App = {
       const newServer = await res.json()
       this.servers.push(newServer)
     },
+    async remove(id) {
+      await fetch(`/api/server/${id}`, { method: 'DELETE' })
+      this.servers = this.servers.filter(s => s.id !== id)
+    }
   },
   async mounted() {
     const res = await fetch('/api/server')
